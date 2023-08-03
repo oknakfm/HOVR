@@ -50,10 +50,11 @@ constants = list(L = 50, ## number of hidden units
                  lr_period = 10**3, ## period of cyclic decay
                  n_itr = 10**4 ## num. of SGD iteration
 )
+
 ## initialization of the parameter
 theta0 = theta.init(L=constants$L, sd=1, sdx=sd(x))
   
-## Variance-reduced SGD
+## Variation-regularized SGD
 .sgd = VRSGD(theta0=theta0, x=x, y=y, constants=constants)
 
 
@@ -66,7 +67,7 @@ yp = f(xx, .sgd$theta)
 
 par(mfrow=c(1,2))
 
-## [plot 1] monitored loss functions (via SGD)
+## [plot 1] monitored loss functions (of SGD)
 plot(.sgd$loss, type="l", xlab="t", ylab="loss", log="y")
 
 ## [plot 2] training data and predictions
