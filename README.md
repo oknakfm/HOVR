@@ -16,7 +16,7 @@ This repository provides R Source codes to reproduce numerical experiments in th
 
 ## Main scripts
 ### <a href="https://github.com/oknakfm/HOTV/blob/main/0_demonstration.R">0_demonstration.R</a>
-You can train a single neural network with the proposed stochastic algorithm. You can replace the training data (x,y) and the optimization settings and the number of hidden units (stored in the ``constants'' variable) to explore our regularization! 
+You can train a single neural network with the proposed stochastic algorithm. You can replace the training data <a href="https://github.com/oknakfm/HOTV/blob/main/0_demonstration.R#L34">(x,y)</a> and the optimization settings and the number of hidden units (stored in the <a href="https://github.com/oknakfm/HOTV/blob/main/0_demonstration.R#L42">``constants''</a> variable) to explore our regularization! 
 
 ### <a href="https://github.com/oknakfm/HOTV/blob/main/1_illustration.R">1_illustration.R</a>
 This script provides illustration figures of the neural networks trained by several regularizations. 
