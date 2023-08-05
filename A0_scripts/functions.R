@@ -95,9 +95,9 @@ theta.sum <- function(theta1, theta2){
               d = theta1$d + theta2$d))
 }
 
-VRSGD <- function(theta0=NULL, x=NULL, y=NULL, constants){
+VRSGD <- function(theta0=NULL, x=NULL, y=NULL, constants, monitor_loss=TRUE){
   theta = theta0; N = length(x); lr = constants$lr0
-  loss=NULL
+  if(monitor_loss) monitor=list(loss=NULL, itr=NULL)
   
   pb <- progress_bar$new(total = constants$n_itr)
   for(itr in 1:constants$n_itr){
@@ -119,13 +119,16 @@ VRSGD <- function(theta0=NULL, x=NULL, y=NULL, constants){
     if(itr %% constants$lr_it == 0) lr = lr * constants$lr_dr
     if(itr %% constants$lr_period == 0) lr = constants$lr0
     
-    if(itr %% 10 == 0){
+    if(monitor_loss && (itr %% 10 == 0)){
       loss_tmp = mean(nu(y - f(x, theta), grad_level=0))
-      loss = append(loss, loss_tmp)
+      monitor$loss = append(monitor$loss, loss_tmp)
+      monitor$itr = append(monitor$itr, itr)
     }
     
     ## parameter update
     theta = theta.sum(theta, theta.mult(grad, -lr))
   }
-  return(list(theta=theta, loss=loss))
+  
+  return(if(monitor_loss) list(theta=theta, monitor=monitor)
+         else list(theta=theta, monitor=NULL))
 }

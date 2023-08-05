@@ -55,8 +55,8 @@ constants = list(L = 50, ## number of hidden units
 theta0 = theta.init(L=constants$L, sd=1, sdx=sd(x))
   
 ## Variation-regularized SGD
-.sgd = VRSGD(theta0=theta0, x=x, y=y, constants=constants)
-
+.sgd = VRSGD(theta0=theta0, x=x, y=y, constants=constants,
+             monitor_loss=TRUE)
 
 ## --------
 ##   plot
@@ -68,7 +68,7 @@ yp = f(xx, .sgd$theta)
 par(mfrow=c(1,2))
 
 ## [plot 1] monitored loss functions (of SGD)
-plot(.sgd$loss, type="l", xlab="t", ylab="loss", log="y")
+plot(.sgd$monitor$itr, .sgd$monitor$loss, type="l", xlab="t", ylab="loss", log="y")
 
 ## [plot 2] training data and predictions
 plot(x, y, xlim=xl, ylim=yl, xlab="x", ylab="y")
