@@ -2,7 +2,7 @@
 This repository provides R Source codes to reproduce numerical experiments in the following arXiv preprint:
 
 ```
-@article{okuno2023HOTV,
+@article{okuno2023HOVR,
     year      = {2023},
     publisher = {CoRR},
     volume    = {},
